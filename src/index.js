@@ -2,12 +2,15 @@ import express from 'express';
 import auth from './routes/auth';
 import bodyParser from 'body-parser';
 import mongoose from 'mongoose';
+import dotenv from 'dotenv';
 
 const app = express();
 
-mongoose.connect('mongodb://localhost:27017/login', {useNewUrlParser: true});
+dotenv.config();
 
 app.use(bodyParser.json());
+
+mongoose.connect(process.env.MONGODB_URL, {useNewUrlParser: true});
 
 /*
 *Routes define
